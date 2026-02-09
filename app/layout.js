@@ -8,9 +8,6 @@ import "@/src/styles/Shop.css";
 import "@/src/styles/ProductDetail.css";
 import "@/src/styles/Cart.css";
 import "@/src/styles/Checkout.css";
-import "@/src/styles/AuthModern.css";
-// import "@/src/styles/Login.css"; // Deprecated
-// import "@/src/styles/SignupSplit.css"; // Deprecated
 import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
 

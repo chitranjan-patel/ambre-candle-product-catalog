@@ -1,0 +1,233 @@
+/* Admin Dashboard Responsive Styles (Flattened Structure) */
+
+.admin-main-container {
+    padding-top: 120px;
+    padding-bottom: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+/* 
+   DESKTOP GRID LAYOUT 
+   We use CSS Grid to position the 4 flat siblings:
+   1. Title
+   2. Actions
+   3. KPI Grid
+   4. Table Section
+*/
+.admin-dashboard-grid {
+    display: grid !important;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "title actions"
+        "kpis kpis"
+        "table table";
+    gap: 30px;
+    align-items: end;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.admin-title-section {
+    grid-area: title;
+    margin-bottom: 20px;
+}
+
+.admin-actions {
+    grid-area: actions;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.admin-kpi-grid {
+    grid-area: kpis;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.admin-table-section {
+    grid-area: table;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+/* Inner Styles */
+.admin-table-header {
+    padding: 30px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-search-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-search-input {
+    padding: 10px 10px 10px 40px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    outline: none;
+    width: 250px;
+    color: #333;
+    border: 1px solid #e5e5e5;
+}
+
+.admin-modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 700px;
+    border-radius: 24px;
+    position: relative;
+    z-index: 1010;
+    overflow: hidden;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.3);
+}
+
+.admin-modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* Admin Table Buttons */
+.admin-table-btn {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.2s;
+}
+
+
+/* --- Mobile Responsiveness --- */
+/* --- MOBILE OPTIMIZATION (CLEAN SLATE) --- */
+@media (max-width: 1000px) {
+
+    .admin-main-container {
+        padding-top: 80px !important;
+        /* Reduced from 140px for tighter header clearance */
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-bottom: 80px !important;
+    }
+
+    /* Stack Everything Vertically */
+    .admin-dashboard-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* Logical Mobile Order */
+    /* 1. Title */
+    .admin-title-section {
+        order: -2 !important;
+        /* Force to top */
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 10px !important;
+    }
+
+    /* 2. KPI Stats (Below Table) */
+    .admin-kpi-grid {
+        order: 1 !important;
+        /* Moved below table */
+        grid-template-columns: 1fr !important;
+        /* Stack Cards */
+        gap: 20px;
+        width: 100%;
+        justify-items: center;
+        margin-bottom: 30px !important;
+    }
+
+    .admin-kpi-grid .luxury-card {
+        width: 100%;
+        max-width: 400px;
+        /* Prevent too wide cards */
+        text-align: center;
+        margin: 0 auto;
+        /* Center block */
+    }
+
+    /* 3. Recent Orders Table (Immediately after Title) */
+    .admin-table-section {
+        order: -1 !important;
+        /* Force to top, just below title */
+        width: 100%;
+        overflow-x: auto !important;
+        /* Allow horizontal scroll for table ONLY */
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid #f0f0f0;
+        border-radius: 12px;
+        margin-bottom: 30px !important;
+    }
+
+    /* Fix Table Content */
+    .admin-table-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    .admin-search-input {
+        width: 100% !important;
+    }
+
+    /* Prevent Email/Text Cutoff */
+    th,
+    td {
+        padding: 12px 10px !important;
+        font-size: 0.8rem !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        min-width: 80px;
+    }
+
+    /* 4. Actions (Bottom) */
+    .admin-actions {
+        order: 4;
+        flex-direction: column;
+        width: 100%;
+        padding-top: 20px;
+        border-top: 1px dashed #ddd;
+    }
+
+    .admin-actions button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Modal Fixes */
+    .admin-modal-content {
+        width: 90% !important;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .admin-modal-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .admin-logout-btn {
+        background: #d4af37 !important;
+        color: #fff !important;
+        border-color: #d4af37 !important;
+    }
+}

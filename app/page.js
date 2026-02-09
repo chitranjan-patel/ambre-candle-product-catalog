@@ -181,12 +181,18 @@ export default function Home() {
                                 transition={{ delay: i * 0.1 }}
                             >
                                 <div className="misa-cat-img-wrapper">
-                                    <Image
-                                        src={cat.img}
-                                        alt={cat.title}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 25vw"
-                                    />
+                                    <motion.div
+                                        whileHover={{ scale: 1.1 }}
+                                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                                        style={{ width: '100%', height: '100%', position: 'relative' }}
+                                    >
+                                        <Image
+                                            src={cat.img}
+                                            alt={cat.title}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 25vw"
+                                        />
+                                    </motion.div>
                                 </div>
                                 <h3>{cat.title}</h3>
                                 <span className="misa-cat-link">View All</span>
@@ -208,12 +214,18 @@ export default function Home() {
                                 transition={{ delay: i * 0.1 }}
                             >
                                 <div className="misa-cat-img-wrapper">
-                                    <Image
-                                        src={item.img}
-                                        alt={item.title}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 25vw"
-                                    />
+                                    <motion.div
+                                        whileHover={{ scale: 1.1 }}
+                                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                                        style={{ width: '100%', height: '100%', position: 'relative' }}
+                                    >
+                                        <Image
+                                            src={item.img}
+                                            alt={item.title}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 25vw"
+                                        />
+                                    </motion.div>
                                 </div>
                                 <h3>{item.title}</h3>
                                 <span className="misa-cat-link">View All</span>
@@ -262,20 +274,26 @@ export default function Home() {
                 </div>
                 <div className="misa-products-grid">
                     {bestSellers.map((product, i) => (
-                        <div key={product.id} className="misa-product-card">
+                        <motion.div key={product.id} className="misa-product-card" whileHover="hover" initial="initial">
                             <Link href={`/product/${product.id}`} className="misa-prod-link-wrapper">
                                 <div className="misa-prod-img-box">
                                     {(i === 0 || i === 2) && <span className="misa-badge">{i === 0 ? 'Bestseller' : 'New'}</span>}
                                     <button className="misa-wishlist-btn" onClick={(e) => { e.preventDefault(); alert('Added to wishlist!'); }}>
                                         ❤
                                     </button>
-                                    <Image
-                                        src={product.image}
-                                        alt={product.name}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 25vw"
-                                        className="misa-prod-img"
-                                    />
+                                    <motion.div
+                                        whileHover={{ scale: 1.1 }}
+                                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                                        style={{ width: '100%', height: '100%', position: 'relative' }}
+                                    >
+                                        <Image
+                                            src={product.image}
+                                            alt={product.name}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 25vw"
+                                            className="misa-prod-img"
+                                        />
+                                    </motion.div>
                                     <div className="misa-quick-add">
                                         <button onClick={(e) => { e.preventDefault(); alert('Added to cart!'); }}>
                                             Add to Cart
@@ -288,7 +306,7 @@ export default function Home() {
                                     <span className="misa-prod-price">₹{product.price}</span>
                                 </div>
                             </Link>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </section>

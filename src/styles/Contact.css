@@ -1,0 +1,26 @@
+/* Contact Page Styles */
+
+/* Mobile responsive: Gold Send Message button */
+@media (max-width: 768px) {
+    .contact-send-button {
+        background: #d4af37 !important;
+        color: #000 !important;
+    }
+
+    .contact-send-button:hover {
+        background: #c19b2e !important;
+    }
+}
+
+/* Desktop: Keep dark background */
+@media (min-width: 769px) {
+    .contact-send-button {
+        background: #1b1f1c;
+        color: #fff;
+    }
+
+    .contact-send-button:hover {
+        background: #d4af37;
+        color: #000;
+    }
+}

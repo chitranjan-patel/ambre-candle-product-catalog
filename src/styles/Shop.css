@@ -8,7 +8,7 @@
             rgba(45, 74, 62, 0.03) 1px,
             transparent 1px,
             transparent 30px);
-    padding-top: 140px;
+    padding-top: calc(var(--header-height) + 40px);
     padding-bottom: 150px;
     min-height: 100vh;
     color: var(--color-text-primary);
@@ -60,10 +60,26 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+/* Shop Page Layout Header Spacer */
+.boutique-header {
+    margin-top: 0;
+}
+
+/* Consolidated Mobile Spacing for Shop */
+@media (max-width: 768px) {
+    .ambre-boutique-shop {
+        padding-top: calc(var(--header-height-mobile) + 30px) !important;
+        /* Enough to clear fixed header */
+        padding-bottom: 80px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
+
 /* Shop Layout */
 .shop-layout {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 300px 1fr;
     gap: 50px;
     align-items: start;
 }
@@ -110,8 +126,6 @@
     flex-direction: column;
     gap: 12px;
 }
-
-/* ... existing code ... */
 
 .filter-group ul li {
     font-size: 0.95rem;
@@ -265,7 +279,7 @@
 .luxury-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(45, 74, 62, 0.1);
-    border-color: var(--color-accent);
+    border-color: #d4af37;
 }
 
 .unit-visual {
@@ -274,6 +288,58 @@
     background: #fdfbf7;
     overflow: hidden;
     border-radius: 2px;
+}
+
+/* Overlay & Buttons - Replaces Inline Styles */
+.shop-card-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.btn-quickview {
+    flex: 1;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-quickview:hover {
+    background: #f0f0f0;
+}
+
+.btn-add-cart {
+    background: var(--color-accent);
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #d4af37;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add-cart.added {
+    background: #4CAF50 !important;
 }
 
 /* Fix for Next.js Image + Link wrapper */
@@ -392,15 +458,104 @@
     }
 }
 
-@media (max-width: 500px) {
-    .product-wall {
+/* Fix Mobile Grid and Card Overlap */
+@media (max-width: 768px) {
+    .ambre-boutique-shop {
+        /* Padding already handled above, keeping structure clean */
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-bottom: 80px !important;
+    }
+
+    .shop-layout {
+        display: block !important;
         grid-template-columns: 1fr;
+    }
+
+    .shop-sidebar {
+        display: none;
+        /* Hide sidebar on mobile */
+    }
+
+    /* 2-Column Grid with Safe Spacing */
+    .product-wall {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        width: 100% !important;
+    }
+
+    .luxury-card {
+        padding: 5px !important;
+        background: #fff;
+        border: 1px solid #d4af37;
+        box-shadow: none !important;
+        /* Flat clean look */
+        width: 100% !important;
+        overflow: hidden;
+        /* Prevent overflow */
+    }
+
+    .unit-visual {
+        aspect-ratio: 1 / 1.1;
+        /* Consistent Box */
+        width: 100% !important;
+        position: relative;
+        background: #f9f9f9;
+        overflow: hidden;
+    }
+
+    .unit-visual img {
+        object-fit: cover !important;
+        /* Cover area without stretch */
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute !important;
+        inset: 0 !important;
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        /* Smooth zoom */
+    }
+
+    .luxury-card:active .unit-visual img,
+    .luxury-card.mobile-hover .unit-visual img {
+        transform: scale(1.08);
+        /* Noticeable zoom on touch */
+    }
+
+    /* Buttons Container */
+    .shop-card-overlay {
+        bottom: 10px;
+        right: 10px;
+        left: auto;
+        /* Buttons on right */
+        display: flex;
+        gap: 8px;
+    }
+
+    .btn-quickview,
+    .btn-add-cart {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #d4af37;
+    }
+
+    .btn-quickview span {
+        display: none;
+        /* Icon only */
+    }
+
+    .unit-meta h3 {
+        font-size: 0.85rem;
+        white-space: normal;
+        /* Allow text wrap if needed */
+        line-height: 1.2;
     }
 }
 
-/* Fix Mobile Header Overlap */
-@media (max-width: 768px) {
-    .ambre-boutique-shop {
-        padding-top: 180px !important;
-    }
-}
+/* End of consolidated block */

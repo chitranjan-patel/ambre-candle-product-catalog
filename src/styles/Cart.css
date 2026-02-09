@@ -1,7 +1,7 @@
 /* Cart.css - Ultra Modern Luxury */
 
 .cart-page {
-    padding-top: var(--spacing-lg);
+    padding-top: calc(var(--header-height) + 30px);
     background: radial-gradient(circle at top right, #fbfaf8 0%, #f0ece6 100%);
     min-height: 90vh;
 }
@@ -371,11 +371,21 @@
     .cart-empty-title {
         font-size: 2rem;
     }
+
+    .btn-shop-now {
+        background: #d4af37 !important;
+        color: #fff !important;
+        border-radius: 8px !important;
+        /* Adding slight radius for modern look */
+        padding: 18px 40px !important;
+        letter-spacing: 1px !important;
+        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3) !important;
+    }
 }
 
 /* Fix Mobile Header Overlap */
 @media (max-width: 768px) {
     .cart-page {
-        padding-top: 180px !important;
+        padding-top: calc(var(--header-height-mobile) + 30px) !important;
     }
 }

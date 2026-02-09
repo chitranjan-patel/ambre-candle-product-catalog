@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { Package, Truck, CheckCircle, DollarSign, Users, Lock, LogOut, TrendingUp, Calendar, RefreshCw, Trash2, Eye, Search, Filter, User, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import '@/src/styles/Admin.css';
+import '@/src/styles/AuthModern.css';
 
 export default function AdminDashboard() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -98,7 +100,7 @@ export default function AdminDashboard() {
         return (
             <div className="auth-split-page">
                 {/* Left Panel - Visual (Different Image) */}
-                <div className="auth-left-panel" style={{ background: '#fdfbf7' }}>
+                <div className="auth-left-panel">
                     <div className="auth-circle-decor circle-1" style={{ background: 'rgba(212, 175, 55, 0.1)' }}></div>
                     <div className="auth-circle-decor circle-2" style={{ background: 'rgba(212, 175, 55, 0.05)' }}></div>
 
@@ -201,51 +203,46 @@ export default function AdminDashboard() {
     if (!mounted) return null;
 
     return (
-        <div className="admin-main-container" style={{ minHeight: '100vh', background: '#f8f8f8', color: '#1a1a1a', paddingTop: '100px', paddingBottom: '50px' }}>
-            <style>{styles}</style>
-            <div className="container" style={{ maxWidth: '1400px', padding: '0 30px' }}>
+        <div className="admin-main-container" style={{ minHeight: '100vh', background: '#f8f8f8', color: '#1a1a1a' }}>
+            <div className="admin-dashboard-grid" style={{ maxWidth: '1400px', margin: '0 auto' }}>
 
-                {/* Header */}
-                <div className="admin-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '50px', borderBottom: '1px solid #e5e5e5', paddingBottom: '30px' }}>
-                    <div>
-                        <p style={{ color: '#d4af37', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.8rem', marginBottom: '5px' }}>Overview</p>
-                        <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', margin: 0 }}>Dashboard</h1>
-                    </div>
-                    <div className="admin-actions" style={{ display: 'flex', gap: '15px' }}>
-                        <motion.button
-                            onClick={loadOrders}
-                            whileHover={{ scale: 1.05, backgroundColor: '#d4af37', color: '#000', borderColor: '#d4af37' }}
-                            whileTap={{ scale: 0.95 }}
-                            style={actionButtonStyle}
-                        >
-                            <RefreshCw size={18} /> Refresh
-                        </motion.button>
-                        <motion.button
-                            onClick={clearAllOrders}
-                            whileHover={{ scale: 1.05, backgroundColor: '#ef4444', color: '#fff', borderColor: '#ef4444' }}
-                            whileTap={{ scale: 0.95 }}
-                            style={{ ...actionButtonStyle, background: '#fee2e2', color: '#dc2626', borderColor: '#fecaca' }}
-                        >
-                            <Trash2 size={18} /> Clear Data
-                        </motion.button>
-                        <motion.button
-                            onClick={handleLogout}
-                            whileHover={{ scale: 1.05, backgroundColor: '#d4af37', color: '#000', borderColor: '#d4af37' }}
-                            whileTap={{ scale: 0.95 }}
-                            style={{
-                                ...actionButtonStyle,
-                                background: '#1a1a1a',
-                                color: '#fff',
-                                borderColor: '#1a1a1a'
-                            }}
-                        >
-                            <LogOut size={18} /> Logout
-                        </motion.button>
-                    </div>
+                {/* 1. Title Section */}
+                <div className="admin-title-section">
+                    <p style={{ color: '#d4af37', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.8rem', marginBottom: '5px' }}>Overview</p>
+                    <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', margin: 0 }}>Dashboard</h1>
+                </div>
+
+                {/* 2. Actions Section */}
+                <div className="admin-actions">
+                    <motion.button
+                        onClick={loadOrders}
+                        whileHover={{ scale: 1.05, backgroundColor: '#d4af37', color: '#000', borderColor: '#d4af37' }}
+                        whileTap={{ scale: 0.95 }}
+                        style={actionButtonStyle}
+                    >
+                        <RefreshCw size={18} /> Refresh
+                    </motion.button>
+                    <motion.button
+                        onClick={clearAllOrders}
+                        whileHover={{ scale: 1.05, backgroundColor: '#ef4444', color: '#fff', borderColor: '#ef4444' }}
+                        whileTap={{ scale: 0.95 }}
+                        style={{ ...actionButtonStyle, background: '#fee2e2', color: '#dc2626', borderColor: '#fecaca' }}
+                    >
+                        <Trash2 size={18} /> Clear Data
+                    </motion.button>
+                    <motion.button
+                        onClick={handleLogout}
+                        className="admin-logout-btn"
+                        whileHover={{ scale: 1.05, backgroundColor: '#d4af37', color: '#fff', borderColor: '#d4af37' }}
+                        whileTap={{ scale: 0.95 }}
+                        style={actionButtonStyle}
+                    >
+                        <LogOut size={18} /> Logout
+                    </motion.button>
                 </div>
 
                 {/* KPI Cards */}
-                <div className="admin-kpi-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginBottom: '50px' }}>
+                <div className="admin-kpi-grid">
                     <StatCard
                         title="Total Orders"
                         value={orders.length}
@@ -264,7 +261,7 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Orders Table Section */}
-                <div style={{ background: '#fff', borderRadius: '20px', boxShadow: '0 10px 40px rgba(0,0,0,0.05)', overflow: 'hidden', border: '1px solid #eee' }}>
+                <div className="admin-table-section">
                     <div className="admin-table-header" style={{ padding: '30px', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', margin: 0 }}>Recent Orders</h3>
                         <div className="admin-search-wrapper" style={{ display: 'flex', gap: '10px' }}>
@@ -345,19 +342,8 @@ export default function AdminDashboard() {
                                                     onClick={() => setSelectedOrder(order)}
                                                     whileHover={{ scale: 1.05, backgroundColor: '#d4af37', color: '#000', borderColor: '#d4af37' }}
                                                     whileTap={{ scale: 0.95 }}
-                                                    style={{
-                                                        background: '#fff',
-                                                        border: '1px solid #ddd',
-                                                        padding: '8px 16px',
-                                                        borderRadius: '8px',
-                                                        cursor: 'pointer',
-                                                        fontSize: '0.85rem',
-                                                        fontWeight: '600',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        gap: '6px',
-                                                        color: '#333'
-                                                    }}
+                                                    className="admin-table-btn"
+                                                    style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
                                                 >
                                                     View Details
                                                 </motion.button>
@@ -373,7 +359,7 @@ export default function AdminDashboard() {
                 {/* Modal */}
                 <AnimatePresence>
                     {selectedOrder && (
-                        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+                        <div style={{ position: 'fixed', inset: 0, zIndex: 1200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -505,22 +491,14 @@ const StatCard = ({ title, value, icon, color }) => (
     </motion.div>
 );
 
-const inputStyle = {
-    width: '100%',
-    padding: '16px 20px',
-    borderRadius: '12px',
-    border: '1px solid rgba(255,255,255,0.1)',
-    background: 'rgba(255,255,255,0.05)',
-    color: '#fff',
-    outline: 'none',
-    fontSize: '1rem',
-    transition: 'all 0.3s'
-};
+// styles removed
 
 const actionButtonStyle = {
     padding: '10px 20px',
     borderRadius: '8px',
-    border: '1px solid #e5e5e5',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: '#e5e5e5',
     background: '#fff',
     cursor: 'pointer',
     display: 'flex',
@@ -532,6 +510,7 @@ const actionButtonStyle = {
     transition: 'all 0.2s'
 };
 
+// styles removed
 const getStatusColor = (status) => {
     switch (status) {
         case 'Delivered': return { bg: '#dcfce7', text: '#166534' };
@@ -540,63 +519,3 @@ const getStatusColor = (status) => {
         default: return { bg: '#fef9c3', text: '#854d0e' };
     }
 };
-
-const styles = `
-@media (max-width: 768px) {
-    /* Fix Header Overlap - Aggressive */
-    .admin-main-container {
-        padding-top: 160px !important; 
-    }
-    
-    .container {
-        padding: 0 20px !important;
-    }
-
-    .admin-header {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 20px;
-    }
-    
-    
-    .admin-actions {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .admin-actions button {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .admin-table-header {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 15px;
-    }
-
-    .admin-search-wrapper {
-        width: 100%;
-    }
-
-    .admin-search-input {
-        width: 100% !important;
-    }
-
-    .admin-modal-content {
-        max-height: 80vh !important;
-        overflow-y: auto;
-    }
-
-    .admin-modal-grid {
-        grid-template-columns: 1fr !important;
-        gap: 15px !important;
-    }
-    
-    .admin-kpi-grid {
-        grid-template-columns: 1fr !important;
-    }
-}
-`;

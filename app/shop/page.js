@@ -226,7 +226,7 @@ const products = [
         scentFamily: 'Floral',
         occasion: 'Evenings',
         price: 150,
-        image: '/images/new_arrivals/rose_pillar_candle.jpg',
+        image: '/images/new_arrivals/rose_pillar_candle.jpg?v=final',
         desc: 'Classic pillar candle with rose engravings.'
     },
     {
@@ -309,21 +309,8 @@ const AddToCartButton = ({ product }) => {
     return (
         <motion.button
             whileTap={{ scale: 0.9 }}
+            className={`btn-add-cart ${added ? 'added' : ''}`}
             onClick={handleClick}
-            style={{
-                background: added ? '#4CAF50' : 'var(--color-accent)',
-                color: '#fff',
-                padding: '10px',
-                borderRadius: '8px',
-                border: 'none',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'background 0.3s ease',
-                width: '36px',
-                height: '36px'
-            }}
         >
             <AnimatePresence mode="wait">
                 {added ? (
@@ -360,6 +347,8 @@ export default function Shop() {
     const [searchQuery, setSearchQuery] = useState('');
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
+
+
 
     // Get search and category query from URL
     useEffect(() => {
@@ -401,17 +390,41 @@ export default function Shop() {
         return 0;
     });
 
+    // Mobile Scroll Animation Logic
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('mobile-hover');
+                    } else {
+                        entry.target.classList.remove('mobile-hover');
+                    }
+                });
+            },
+            {
+                threshold: 0.6, // Trigger when 60% of item is visible
+                rootMargin: "0px 0px -100px 0px" // Adjust active area
+            }
+        );
+
+        const cards = document.querySelectorAll('.luxury-card');
+        cards.forEach((card) => observer.observe(card));
+
+        return () => observer.disconnect();
+    }, [sortedProducts]);
+
     if (!isMounted) return null;
 
     return (
-        <div className="ambre-boutique-shop section" style={{ background: 'var(--color-bg-primary)', padding: '110px 0 80px' }}>
+        <div className="ambre-boutique-shop section" style={{ background: 'var(--color-bg-primary)' }}>
             <div className="container">
                 <header className="boutique-header" style={{ marginBottom: '60px', textAlign: 'center' }}>
                     <div className="bread-v5" style={{ fontSize: '0.75rem', color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '3px', marginBottom: '15px', fontWeight: '800' }}>Collection / All Products</div>
                     <h1 style={{ fontSize: '3.5rem', fontFamily: 'var(--font-heading)', color: 'var(--color-text-primary)' }}>Our Collection</h1>
                 </header>
 
-                <div className="shop-layout" style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '50px' }}>
+                <div className="shop-layout">
 
                     {/* Filter Sidebar with Mobile Support */}
                     <aside className={`shop-sidebar ${isFilterOpen ? 'active' : ''}`}>
@@ -550,12 +563,12 @@ export default function Shop() {
                                                         }}
                                                     />
                                                 </Link>
-                                                <div className="unit-overlay" style={{ position: 'absolute', bottom: '20px', left: '20px', right: '20px', display: 'flex', gap: '10px' }}>
+                                                <div className="shop-card-overlay">
                                                     <button
                                                         onClick={() => setQuickViewProduct(p)}
-                                                        style={{ flex: 1, background: '#fff', padding: '10px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
+                                                        className="btn-quickview"
                                                     >
-                                                        <Search size={14} /> Quick View
+                                                        <Search size={14} /> <span>Quick View</span>
                                                     </button>
                                                     <AddToCartButton product={p} />
                                                 </div>

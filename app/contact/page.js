@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Instagram, Facebook, Linkedin, Twitter, CheckCircle, Sparkles, X, MessageCircle, Clock } from 'lucide-react';
 import Image from 'next/image';
+import '../../src/styles/Contact.css';
 
 // Animation Variants
 const fadeInUp = {
@@ -348,6 +349,7 @@ export default function ContactPage() {
                                 <motion.button
                                     type="submit"
                                     disabled={isSubmitting}
+                                    className="contact-send-button"
                                     style={{
                                         width: '100%',
                                         padding: '18px',

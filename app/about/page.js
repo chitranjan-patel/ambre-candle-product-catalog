@@ -41,14 +41,15 @@ export default function AboutPage() {
             {/* --- Hero Section --- */}
             <section style={{
                 position: 'relative',
-                height: '90vh',
+                minHeight: '85vh', // Switched to minHeight for better content fitting
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
                 background: '#0a0a0a',
                 color: '#fff',
-                paddingTop: '100px' // Ensure content is not covered by fixed navbar
+                paddingTop: '80px', // Final tuned for perfect balance
+                paddingBottom: '80px'
             }}>
                 {/* Background Video/Image Placeholder - Dark & Premium */}
                 <div style={{
@@ -223,31 +224,7 @@ export default function AboutPage() {
                                 />
                                 <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.1)' }}></div>
                             </div>
-                            {/* Floating Element */}
-                            <motion.div
-                                style={{
-                                    y,
-                                    position: 'absolute',
-                                    bottom: '-20px',
-                                    right: '-20px',
-                                    background: '#fff',
-                                    padding: '30px',
-                                    borderRadius: '20px',
-                                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                                    maxWidth: '300px',
-                                    display: 'none' // Hide on smaller screens via JS media query logical equivalent or css
-                                }}
-                                className="floating-quote" // Use a class to potentially hide in CSS if needed, but for now inline style display: 'none' needs media query logic which is hard inline. Let's make it visible but responsive friendly
-                            >
-                                <p style={{
-                                    fontFamily: 'var(--font-heading)',
-                                    fontStyle: 'italic',
-                                    fontSize: '1.25rem',
-                                    color: '#d4af37',
-                                    marginBottom: '8px',
-                                    margin: 0
-                                }}>"Quality is never an accident."</p>
-                            </motion.div>
+                            {/* Floating Element removed as it was hidden/redundant */}
                         </motion.div>
 
                         {/* Text Side */}
@@ -378,24 +355,24 @@ export default function AboutPage() {
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '12px',
-                            background: '#1b1f1c',
-                            color: '#fff',
+                            background: 'linear-gradient(135deg, #d4af37 0%, #b5952f 100%)',
+                            color: '#000',
                             padding: '20px 48px',
                             borderRadius: '50px',
                             fontWeight: 'bold',
                             textTransform: 'uppercase',
                             letterSpacing: '0.1em',
                             textDecoration: 'none',
-                            boxShadow: '0 20px 50px rgba(0,0,0,0.2)',
+                            boxShadow: '0 20px 50px rgba(212,175,55,0.3)',
                             transition: 'all 0.3s ease'
                         }}
                             onMouseEnter={(e) => {
-                                e.currentTarget.style.background = '#d4af37';
-                                e.currentTarget.style.color = '#000';
+                                e.currentTarget.style.transform = 'translateY(-3px)';
+                                e.currentTarget.style.boxShadow = '0 25px 60px rgba(212,175,55,0.4)';
                             }}
                             onMouseLeave={(e) => {
-                                e.currentTarget.style.background = '#1b1f1c';
-                                e.currentTarget.style.color = '#fff';
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = '0 20px 50px rgba(212,175,55,0.3)';
                             }}
                         >
                             Shop The Collection
