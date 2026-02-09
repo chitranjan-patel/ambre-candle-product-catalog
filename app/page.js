@@ -37,30 +37,30 @@ const microGallery = [
 const bestSellers = [
     {
         id: 801,
-        name: 'Sacred Sanctuary',
-        fragrance: 'Burnt Oak & Sage',
-        price: 1860,
+        name: 'Bouquet candle',
+        fragrance: 'Floral',
+        price: 250,
         image: 'https://www.ambrecandle.com/cdn/shop/files/b97213b8-3e2f-4858-8f85-684ded0f7ecf_3294eca4-a32a-4bd7-9a47-7d94dcae5102.jpg?v=1761578738'
     },
     {
-        id: 807,
-        name: 'Prairie',
-        fragrance: 'Lavender and Patchouli',
-        price: 2330,
+        id: 808,
+        name: 'Ladoo candle (pack of 4)',
+        fragrance: 'Cardamom & Festive',
+        price: 150,
         image: 'https://www.ambrecandle.com/cdn/shop/files/7370bac1-67cd-4f34-898a-a43667f9ff81.jpg?v=1759939529'
     },
     {
         id: 806,
-        name: 'Love Potion',
-        fragrance: 'Rose & Apple Blossom',
-        price: 2330,
+        name: 'Flower Urli Candle',
+        fragrance: 'Floral',
+        price: 350,
         image: 'https://www.ambrecandle.com/cdn/shop/files/bd4dcff1-2d70-4173-ada6-bed7cf51ab70.jpg?v=1760296634'
     },
     {
         id: 802,
-        name: 'Silent Whisper',
-        fragrance: 'White Tea & Ginger',
-        price: 790,
+        name: 'Bubble candle',
+        fragrance: 'Fresh & Fruity',
+        price: 120,
         image: 'https://www.ambrecandle.com/cdn/shop/files/2c681722-e4f6-4308-b097-968026bc85b1.jpg?v=1760297485'
     }
 ];
