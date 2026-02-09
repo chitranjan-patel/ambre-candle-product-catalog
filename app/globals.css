@@ -59,6 +59,8 @@ body {
   overflow-x: hidden;
   /* Prevent horizontal scroll glitches */
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {

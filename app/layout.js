@@ -28,6 +28,12 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-headin
 export const metadata = {
     title: "Ambre Candle | Luxury Hand-Poured Scented Candles",
     description: "Discover the elite collection of luxury hand-poured soy candles at Ambre Candle. Artisan pillars, aromatic jars, and festive gift sets for every occasion.",
+    viewport: {
+        width: 'device-width',
+        initialScale: 1,
+        maximumScale: 1,
+        userScalable: false,
+    },
 };
 export default function RootLayout({ children }) {
     return (
