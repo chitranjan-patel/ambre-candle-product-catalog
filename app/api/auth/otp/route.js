@@ -10,8 +10,6 @@ export async function POST(req) {
     // Generate 6-digit OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    // Simulation: Log OTP to server console
-    console.log(`[AUTH] SMS OTP FOR ${phone}: ${otp}`);
 
     return NextResponse.json({
         success: true,
