@@ -5,6 +5,7 @@ import { Mail, Lock, User, ArrowRight, Phone, Sparkles } from 'lucide-react';
 import { useAuth } from '@/src/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import '@/src/styles/AuthModern.css';
 
 export default function SignupPage() {
     const [formData, setFormData] = useState({
