@@ -53,12 +53,12 @@ export default function AdminDashboard() {
         const u = username.toLowerCase().trim();
         const p = password.trim();
 
-        if (u === 'admin' && (p === 'admin123' || p === 'admin')) {
+        if (u === '@ambre02' && p === 'Ambre@012') {
             setIsAuthenticated(true);
             sessionStorage.setItem('ambre_admin_session', 'active');
             loadOrders();
         } else {
-            alert('Invalid Credentials!\nDefault User: admin\nDefault Pass: admin123');
+            alert('Invalid Credentials!\nAdmin User: @Ambre02\nAdmin Pass: Ambre@012');
         }
     };
 
